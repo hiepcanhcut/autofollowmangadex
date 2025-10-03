@@ -61,7 +61,7 @@ setx MANGADEX_PASSWORD "your-password"
 ### 4. Chạy script
 
 ```bash
-python vailz.py
+python wolf.py
 ```
 
 ---
