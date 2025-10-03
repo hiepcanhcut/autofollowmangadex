@@ -61,7 +61,7 @@ setx MANGADEX_PASSWORD "your-password"
 ### 4. Chạy script
 
 ```bash
-python valiz.py
+python vailz.py
 ```
 
 ---
@@ -114,5 +114,3 @@ Tool này giúp bạn:
 
 ---
 
-👉 Bạn có muốn mình làm luôn file `requirements.txt` (nội dung chỉ cần `requests`) để bạn add vào repo cho “chuẩn GitHub project” không?
-```
