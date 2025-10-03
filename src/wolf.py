@@ -8,7 +8,7 @@ USERNAME = os.getenv("MANGADEX_USERNAME") or input("Username: ")
 PASSWORD = os.getenv("MANGADEX_PASSWORD") or input("Password: ")
 
 # File chứa danh sách truyện TruyenDex (mỗi dòng 1 tên truyện hoặc link)
-TRUYEN_FILE = 'data.txt'
+TRUYEN_FILE = "data.txt"
 
 #Step 1: Lấy access token từ MangaDex ====
 def get_token():
@@ -78,4 +78,5 @@ def main():
 if __name__ == "__main__":
 
     main()
+
 
