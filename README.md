@@ -109,6 +109,3 @@ Tool này giúp bạn:
 * Giữ cho acc của bạn an toàn bằng cách **không public thông tin nhạy cảm**.
 
 ---
-
-```
-
