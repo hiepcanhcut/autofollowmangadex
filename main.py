@@ -1,16 +1,16 @@
 import requests
 import json
 
-# ==== Nhập thông tin của bạn ở đây ====
-CLIENT_ID = "personal-client-aded4d19-68d3-4338-af91-55cc05ee1796-c9d0b541"
-CLIENT_SECRET = "yKNgKmhOpgcamcEpYpbT3GhQJeconl3j"
-USERNAME = "ledanghiep123"
-PASSWORD = "hiep3apro"
+#Nhập thông tin của bạn ở đây
+CLIENT_ID = os.getenv("MANGADEX_CLIENT_ID") or input("Client ID: ")
+CLIENT_SECRET = os.getenv("MANGADEX_CLIENT_SECRET") or input("Client Secret: ")
+USERNAME = os.getenv("MANGADEX_USERNAME") or input("Username: ")
+PASSWORD = os.getenv("MANGADEX_PASSWORD") or input("Password: ")
 
 # File chứa danh sách truyện TruyenDex (mỗi dòng 1 tên truyện hoặc link)
 TRUYEN_FILE = 'data.txt'
 
-# ==== Step 1: Lấy access token từ MangaDex ====
+#Step 1: Lấy access token từ MangaDex ====
 def get_token():
     url = "https://auth.mangadex.org/realms/mangadex/protocol/openid-connect/token"
     data = {
@@ -24,7 +24,7 @@ def get_token():
     r.raise_for_status()
     return r.json()["access_token"]
 
-# ==== Step 2: Tìm manga trên MangaDex ====
+#Step 2: Tìm manga trên MangaDex ====
 def search_manga(title, token):
     url = "https://api.mangadex.org/manga"
     params = {"title": title, "limit": 5}  # lấy 5 kết quả để phòng khi sai tên
@@ -52,7 +52,7 @@ def search_manga(title, token):
         print(f"[DEBUG] search fail for '{title}': {data}")
         return None
 
-# ==== Step 3: Follow manga trực tiếp ====
+#Step 3: Follow manga trực tiếp ====
 def follow_manga(manga_id, token, status="plan_to_read"):
     url = f"https://api.mangadex.org/manga/{manga_id}/status"
     headers = {"Authorization": f"Bearer {token}", "Content-Type": "application/json"}
@@ -70,10 +70,11 @@ def main():
     for title in titles:
         manga_id = search_manga(title, token)
         if manga_id:
-            ok = follow_manga(manga_id, token, status="plan_to_read")
+            ok = follow_manga(manga_id, token, status="reading")
             print(f"[OK] Followed {title}" if ok else f"[FAIL] {title}")
         else:
             print(f"[NOT FOUND] {title}")
 
 if __name__ == "__main__":
+
     main()
